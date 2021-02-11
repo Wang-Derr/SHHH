@@ -1,4 +1,4 @@
-# SHHH - Self Sustaining Sound Harvester
+# SSSH - Self Sustaining Sound Harvester
 ## Senior Capstone Project
 ## Northeastern University
 ## Summer 2020 - Spring 2021
