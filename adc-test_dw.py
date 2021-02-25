@@ -12,7 +12,6 @@ import os
 
 # Win10 on Derrin's machine
 adc = serial.Serial('COM5', 
-                     timeout=1, 
                      baudrate=115200,
                      parity=serial.PARITY_NONE,
                      stopbits=serial.STOPBITS_ONE,
@@ -25,7 +24,7 @@ if os.path.exists("adc_data.txt"):
 
 n = 0
 
-while(n < 20):
+while(n < 100):
     adc_data = open('adc_data.txt','a+')
     dataIn = adc.read(168)
     dataInAsString = str(dataIn, 'utf-8')
@@ -34,9 +33,13 @@ while(n < 20):
     # targetIndex = dataInAsString.index("CH4")
 
     # Win10 on Derrin's machine
-    targetIndex = dataInAsString.index("CH5")
-
+    try:
+        targetIndex = dataInAsString.index("CH5")
+    except ValueError:
+        continue
     voltage = dataInAsString[targetIndex + 9:targetIndex + 14]
+    if voltage == '' or len(voltage) < 3:
+        continue
     adc_data.write(str(n))
     adc_data.write(",")
     adc_data.write(voltage)
