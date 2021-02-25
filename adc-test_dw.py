@@ -40,10 +40,10 @@ while(n < 100):
     voltage = dataInAsString[targetIndex + 9:targetIndex + 14]
     if voltage == '' or len(voltage) < 3:
         continue
-    adc_data.write(str(n))
+    adc_data.write(str(n+1))
     adc_data.write(",")
     adc_data.write(voltage)
     adc_data.write("\n")
-    time.sleep(.5)
+    time.sleep(.1)
     n = n + 1
     adc_data.close()
